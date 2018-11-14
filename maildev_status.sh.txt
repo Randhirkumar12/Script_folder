@@ -1,0 +1,9 @@
+!#/bin/bash
+
+status=$(ps -eaf | grep maildev)
+
+if ((! $status))
+then
+# restart service
+	maildev
+fi 

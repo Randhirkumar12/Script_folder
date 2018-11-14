@@ -1,0 +1,26 @@
+!#/bin/bash
+
+# Install node server
+ststus=$(sudo apt install nodejs )
+
+if (( $status != 0 ))
+then
+	echo "NPM installation failed ! exiting"
+	exit 1
+fi
+
+
+### Install mail server
+status=$(npm install -g maildev) 
+if (( $status != 0 ))
+then
+	echo "Maildev installation failed ! exiting"
+	exit 1
+fi
+
+# Run mail server
+maildev
+
+## Install cron job script 
+sudo cp mailserver_status.sh /etc/cron.d/
+
